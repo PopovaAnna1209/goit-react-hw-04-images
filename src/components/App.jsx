@@ -80,14 +80,15 @@ export const App = () => {
     return (
       <>
         <Searchbar onSubmit={formSubmit} />
-        
-        {isLoading && <Loader />}
 
         {images.length >= 1 && <ImageGallery images={images} openModal={openModal} />}
+       
+        {isLoading && <Loader />}
 
         {error && <p> Oops, something went wrong :( </p>}
-
-        {loadMore && <Button onloadMore={onloadMore} page={page} />}
+        
+        {images.length !== 0 && !isLoading && (
+          loadMore && <Button onloadMore={onloadMore} page={page} />)}
 
         {showModal && (
           <Modal largeImageURL={largeImageURL} onClose={closeModal} />
